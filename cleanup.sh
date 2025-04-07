@@ -15,12 +15,12 @@ yay -Scc
 
 echo "The following orphaned packages will be removed: "
 
-yay -Qttd
+yay -Qttdq
 
 read -p "Continue? [y/N] " -n 1 -r
 
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    for package in $(yay -Qttd); do
+    for package in $(yay -Qttdq); do
         yay -Rns "$package" --confirm
     done
 fi
