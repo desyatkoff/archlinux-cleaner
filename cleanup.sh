@@ -6,24 +6,16 @@
 yay -Syu
 
 
-# 2. Remove package cache
+# 2. Remove orphans (with confirmation)
+
+for package in $(yay -Qttdq); do
+    yay -Rns "$package" --confirm
+done
+
+
+# 3. Remove package cache
 
 yay -Scc
-
-
-# 3. Remove orphans (with confirmation)
-
-echo "The following orphaned packages will be removed: "
-
-yay -Qttdq
-
-read -p "Continue? [y/N] " -n 1 -r
-
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-    for package in $(yay -Qttdq); do
-        yay -Rns "$package" --confirm
-    done
-fi
 
 
 # 4. Remove user cache
